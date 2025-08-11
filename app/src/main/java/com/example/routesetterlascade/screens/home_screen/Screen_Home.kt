@@ -24,19 +24,12 @@ fun ScreenHome() {
     val scaffoldState=  rememberBottomSheetScaffoldState()
     BottomSheetScaffold(
         scaffoldState=scaffoldState,
-        modifier = Modifier.background(Color.Black),
+        modifier = Modifier.background(Color.Transparent),
         sheetContent = {
-            LazyRow(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp)
-            ) {
-                item { } // First item
-                item { HomeBottomSheet() } // Second item
-                // You can add more here
-            }
+            HomeBottomSheet()
         },
         sheetShape = RoundedCornerShape(0.dp),
+        contentColor = Color.Transparent,
         sheetContainerColor = Color.Black,
         sheetPeekHeight = 200.dp
     ) {
