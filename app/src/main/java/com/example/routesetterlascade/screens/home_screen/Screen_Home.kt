@@ -1,6 +1,5 @@
 package com.example.routesetterlascade.screens.home_screen
 
-
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -18,10 +17,8 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.routesetterlascade.custom.widgets.bottomsheet_widgets.HomeBottomSheet
-import kotlinx.coroutines.launch
-
-
 import com.example.routesetterlascade.custom.widgets.homescreen_widgets.HomeScreenAppBar
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -40,7 +37,8 @@ fun ScreenHome() {
         2 -> 300.dp
         3 -> 280.dp
         5 -> 430.dp
-        6 -> 800.dp  // For index 6, set to 800dp
+        6 -> 800.dp
+        7 -> 400.dp
         else -> 500.dp
     }
 
@@ -51,14 +49,12 @@ fun ScreenHome() {
         label = "peekHeight"
     )
 
-    // When index changes to 6, expand the bottom sheet to show full content
-
-
     BottomSheetScaffold(
         scaffoldState = scaffoldState,
         modifier = Modifier.background(Color.Transparent),
         sheetContent = {
             HomeBottomSheet(
+                currentScreenIndex = currentScreenIndex,
                 onCurrentScreenChanged = { newIndex ->
                     currentScreenIndex = newIndex
                 }
@@ -68,7 +64,7 @@ fun ScreenHome() {
         contentColor = Color.Transparent,
         sheetContainerColor = Color.Black,
         sheetPeekHeight = animatedPeekHeight,
-        sheetSwipeEnabled = true // Allow user to drag the sheet
+        sheetSwipeEnabled = true
     ) {
         Image(
             painter = painterResource(id = com.example.routesetterlascade.R.drawable.maplocationimage),
@@ -78,9 +74,9 @@ fun ScreenHome() {
         )
         Column {
             Spacer(modifier = Modifier.height(28.dp))
-            HomeScreenAppBar()
+            HomeScreenAppBar(
+                onMapStyleClick = { currentScreenIndex = 7 }
+            )
         }
     }
 }
-
-
